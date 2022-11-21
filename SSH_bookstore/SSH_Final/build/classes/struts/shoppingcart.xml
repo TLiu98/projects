@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+  <package name="shoppingcart" namespace="/" extends="struts-default">
+   
+    <action name="Shoppingcart" method="Shoppingcart" class="com.java1234.action.ShoppingcartAction">
+    <result name="success">gouwuche.jsp</result>
+    <result name="error">login.jsp</result>
+    </action> 
+    <action name="InsertoShoppingcart" method="InsertoShoppingcart" class="com.java1234.action.ShoppingcartAction">
+    <result name="success">xinxi.jsp</result>
+    <result name="error">xinxi.jsp</result>
+    </action> 
+    
+     <action name="deletebook" method="deletebook" class="com.java1234.action.ShoppingcartAction">
+<result name="success">gouwuche.jsp</result>
+<result name="error">gouwuche.jsp</result>
+</action>  
+
+ </package>
+ </struts>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-12-25 22:34:11 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+
+    <class name="com.entity.BookEntity" table="book" schema="javaee">
+        <id name="bookId" column="book_id"/>
+        <property name="bookName" column="book_name"/>
+        <property name="picture" column="picture"/>
+        <property name="type" column="type"/>
+        <property name="count" column="count"/>
+        <property name="price" column="price"/>
+        <property name="special_price" column="special_price"/>
+        <property name="discription" column="discription"/>
+        <property name="isspecical" column="isspecical"/>
+    </class>
+</hibernate-mapping>

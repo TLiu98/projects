@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+      
+<struts>  
+    <constant name="struts.action.extension" value="action" /> 
+     <include file="struts/*.xml"></include>
+<!--        <include file="order.xml"></include> -->
+    <package name="ssh2" extends="struts-default" namespace="/">
+
+<action name="findbytype" method="FindByType" class="com.java1234.action.BookAction">
+<result name="success">/fenleixianshi.jsp</result>
+<result name="error">/fenleixianshi.jsp</result>
+<result name="input">/fenleixianshi.jsp</result>
+</action>
+<action name="findtype" method="FindType" class="com.java1234.action.BookTypeAction">
+
+<result name="success">/success.jsp</result>
+<result name="error">/register.jsp</result>
+<result name="input">/register.jsp</result>
+</action>
+
+
+<action name="findbylike" class="com.java1234.action.BookAction" method="FindByLike">
+
+<result name="success">/chaxunxianshi.jsp</result>
+<result name="error">/chaxunxianshi.jsp</result>
+<result name="input">/chaxunxianshi.jsp</result>
+
+</action>
+
+
+<action name="findinformation" class="com.java1234.action.BookAction" method="FindInformation">
+<result name="success">/xinxi.jsp</result>
+<result name="input">/xinxi.jsp</result>
+
+</action>
+
+</package> 
+      
+  
+      
+</struts>   

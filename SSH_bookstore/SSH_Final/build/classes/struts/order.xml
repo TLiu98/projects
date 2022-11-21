@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+  <package name="ssh4" namespace="/" extends="struts-default">
+  <action name="Inserttoorder" method="InserttoOrder" class="com.java1234.action.OrderAction">
+  <result name="success">gouwuche.jsp</result>
+  <result name="error">gouwuche.jsp</result>
+  <result name="input">gouwuche.jsp</result>
+</action>
+
+<action name="findallorder" method="FindAllOrder" class="com.java1234.action.OrderAction">
+<result name="success">dingdanzhongxin.jsp</result>
+<result name="error">dingdanzhongxin.jsp</result>
+<result name="input">dingdanzhongxin.jsp</result>
+</action>
+
+ </package>
+ </struts>

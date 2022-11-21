@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+  <package name="ssh1" namespace="/" extends="struts-default,json-default">
+    	<action name="Login" method="Login" class="com.java1234.action.UserAction">
+    		<result name="success" type="redirect">index.jsp</result><!--  type="redirect" -->
+    		<result  name="error">login.jsp</result>
+    	</action>
+    		
+    		<action name="Register" method="Register" class="com.java1234.action.UserAction">
+    		<result name="success">index.jsp</result><!--  type="redirect" -->
+    		<result  name="error">register.jsp</result>
+    	</action>
+    	    
+    	    <action name="Logout"  method="Logout" class="com.java1234.action.UserAction">
+        	<result name="success">/index.jsp</result> 	
+        </action>
+        	    
+        	  <action name="Update"  method="Update" class="com.java1234.action.UserAction">
+        	<result name="success">/index.jsp</result> 	
+        </action>
+        
+          <action name="Sms" method="Sms" class="com.java1234.action.UserAction">
+            <result name="fail"></result>
+            <!-- 返回json类型数据 -->
+            <result type="json">
+                <param name="root">result<!-- result是action中设置的变量名，也是页面需要返回的数据，该变量必须有setter和getter方法 --></param>
+            </result>
+
+            </action>
+             <action name="Lost"  method="Lost" class="com.java1234.action.UserAction">
+        	<result name="success">/update.jsp</result> 
+        	<result name="error">/lost.jsp</result> 	
+        </action>
+        		<action name="createImageAction" class="com.java1234.action.CreateImageAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+            
+ 
+    </package>
+    </struts>

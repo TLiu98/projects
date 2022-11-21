@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-12-28 0:05:18 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.java1234.entity.Shoppingcart" table="SHOPPINGCART">
+        <id name="book_id" type="java.lang.String">
+            <column name="BOOK_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="user_id" type="java.lang.String">
+            <column name="USER_ID" />
+        </property>
+        <property name="count" type="int">
+            <column name="COUNT" />
+        </property>
+        <property name="state" type="java.lang.String">
+            <column name="STATE" />
+        </property>
+        <property name="request" type="javax.servlet.http.HttpServletRequest" access="field">
+            <column name="REQUEST" />
+        </property>
+    </class>
+</hibernate-mapping>
+<!-- <class name="com.entity.Shoppingcart" table="shoppingcart" schema="javaee"> -->
+<!--         <composite-id> -->
+<!--             <key-property name="userId" column="user_id"/> -->
+<!--             <key-property name="bookId" column="book_id"/> -->
+<!--         </composite-id> -->
+<!--         <property name="count" column="count"/> -->
+<!--         <property name="state" column="state"/> -->
+<!--     </class> -->
+<!-- </hibernate-mapping> -->
