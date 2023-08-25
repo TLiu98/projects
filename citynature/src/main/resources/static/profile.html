@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>profile page</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/profile.css"/>
+<!--    <link id="favicon" rel="icon" href="https://q1.qlogo.cn/g?b=qq&nk=2211717435&s=640">-->
+    <link href="https://font.sec.miui.com/font/css?family=MiSans:400,500,600,700:Chinese_Simplify,Latin,Chinese_Traditional&amp;display=swap" rel="stylesheet">
+    <link href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/css/bootstrap-grid.min.css" type="text/css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="bg"></div>
+    <div id = "profile">
+        <div class="container">
+            <div class="main-box">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="box-left">
+                            <img src="static/images/login/login_logo.jpg">
+                            <h1>{{username}}</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="box-right">
+                            <ul class="nav-bar">
+                                <li class="nav-item nav-active" id="home">
+                                    Home
+                                </li>
+                                <li class="nav-item" id="blog" >
+                                    Blog
+                                </li>
+                                <li class="nav-item nav-active" id="index">
+                                    Index
+                                </li>
+                            </ul>
+                            <div class="box-content" id="home1">
+                                <p style="font-style:italic;font-weight: bold;">{{intro}}</p>
+                                <p>Date of birth: {{birthday}}</p>
+                                <p>E-mail: {{email}}</p >
+                                <p>state: {{state}}</p >
+                                <p>city: {{city}}</p >
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="static/js/profile.js"></script>
+    <script>
+        new Vue({
+            el:"#profile",
+            data: {
+                username: '',
+                birthday: '',
+                email: '',
+                state: '',
+                city: '',
+                intro: ''
+            },
+            created(){
+                axios.get("/user/findUserInfoByName")
+                    .then(response =>{
+                    this.username = response.data.userName;
+                    const birthday_date = new Date(response.data.birthday);
+                    this.birthday = birthday_date.toLocaleDateString();
+                    this.email = response.data.email;
+                    this.state = response.data.state;
+                    this.city = response.data.city;
+                    this.intro = response.data.introduction;
+                })
+            }
+        });
+    </script>
+<!--    <script>-->
+<!--        var typed = new Typed('#intro', {-->
+<!--            strings: [{{intro}}],-->
+<!--            typeSpeed: 100,-->
+<!--            loop: true,-->
+<!--        });-->
+<!--    </script>-->
+
+</body>
+</html>
+
+
+
+
+
+

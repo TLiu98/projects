@@ -1,0 +1,140 @@
+body {
+    background-image: url("../images/login/login_background.jpg");
+    background-size: 100%;
+    background-repeat: repeat;
+}
+
+#login {
+    width: 400px;
+    height: 260px;
+    padding: 13px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+
+    background-color: rgba(240, 255, 255, 0.5);
+
+    border-radius: 10px;
+    text-align: center;
+}
+
+form p > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#image_logo {
+    margin-top: 22px;
+}
+
+.label_input {
+    font-size: 14px;
+    font-family: 宋体;
+
+    width: 65px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: white;
+    background-color: #3CD8FF;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.text_field {
+    width: 278px;
+    height: 28px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 0;
+}
+
+#btn_login {
+    font-size: 14px;
+    font-family: 宋体;
+
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+
+    color: white;
+    background-color: #3BD9FF;
+    border-radius: 6px;
+    border: 0;
+    margin-left: 50px;
+    float: left;
+}
+
+#forget_pwd {
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    float: right;
+    top: 5px;
+
+}
+
+#forget_pwd:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+#register_new {
+    /*font-size: 12px;  !* 设置字体大小 *!*/
+    /*color: black;     !* 设置字体颜色 *!*/
+    /*text-decoration: none;  !* 移除下划线 *!*/
+    /*margin-top: 10px;  !* 设置上边距 *!*/
+    /*float: right;*/
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    float: right;
+    top: 5px;
+}
+
+/* 鼠标悬停时的样式 */
+#register_new:hover {
+    color: blue;  /* 改变字体颜色 */
+    text-decoration: underline;  /* 添加下划线 */
+}
+
+#login_control {
+    padding: 0 28px;
+}
+
+
+
+#error-message {
+    color: red;
+    font-size: 12px;
+}
+#pop {
+    margin-left: 100px;
+    position: fixed;
+    top: 0;
+    width: 200px;
+    height: 180px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    border-radius: 10px;
+}
+
+
+#pop_btn{
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

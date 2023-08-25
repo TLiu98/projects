@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flyhigh.citynature.mapper.PostXmlMapper">
+    <insert id="submitPost" parameterType="Post">
+        insert into post (title, content, author) values(#{title}, #{content} ,#{author});
+    </insert>
+
+    <select id="getPostIdAfterSubmit">
+        select LAST_INSERT_ID();
+    </select>
+
+    <update id="insertPicturePath">
+        UPDATE post SET picture = #{path} WHERE postId = #{postId};
+    </update>
+
+</mapper>

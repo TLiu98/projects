@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="register/html; charset=gb2312">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: url(static/images/login/login_background.jpg) repeat 0px 0px;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            -moz-background-size: 100% 100%;
+        }
+        p{
+            margin-top: 10px;
+            margin-left: 20px;
+            color: azure;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #register {
+            width: 37%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 650px;
+            background-color: rgba(75, 81, 95, 0.3);
+            box-shadow: 7px 7px 17px rgba(52, 56, 66, 0.5);
+            border-radius: 5px;
+        }
+
+        #name_trip {
+            margin-left: 50px;
+            color: red;
+        }
+
+
+        .sexDiv>input,
+        .hobby>input {
+            width: 30px;
+            height: 17px;
+        }
+
+        input,
+        select {
+            margin-left: 15px;
+            border-radius: 5px;
+            border-style: hidden;
+            height: 30px;
+            width: 140px;
+            background-color: rgba(216, 191, 216, 0.5);
+            outline: none;
+            color: #f0edf3;
+            padding-left: 10px;
+        }
+
+        .button {
+            border-color: cornsilk;
+            background-color: rgba(100, 149, 237, .7);
+            color: aliceblue;
+            border-style: hidden;
+            border-radius: 5px;
+            width: 100px;
+            height: 31px;
+            font-size: 16px;
+        }
+
+        .introduce>textarea {
+            background-color: rgba(216, 191, 216, 0.5);
+            border-style: hidden;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            color: #f0edf3;
+        }
+
+        b {
+            margin-left: 50px;
+            color: #FFEB3B;
+            font-size: 10px;
+            font-weight: initial;
+        }
+        .error {
+            color: red;
+        }
+        .pop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            border-radius: 10px;
+
+        }
+        .pop_title{
+            color: #2c3e50  !important;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-right: 10px;
+        }
+        .pop-content{
+            background-color: antiquewhite;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .pop_btn{
+            background-color: #ccc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .pop_btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+<div id="register">
+    <form @submit.prevent="checkForm">
+        <h1>Register</h1>
+        <p>Username:<input id="userNname" type="text" v-model="username" @blur="validateUsername" autofocus required></p><br/>
+        <label class="error"  v-if="errors.usernameVerify" >*This username is existed. Please try a new one.</label></p>
+
+        <p>Password:<input id="password" type="password" v-model="password" @blur="validatePassword" required><br/>
+            <label class="error"  v-if="errors.password" id="password_trip">*Password should be more than 6 characters.</label></p>
+
+        <p>Confirm password:<input id="surePassword" type="password" v-model="confirmPassword" @blur="validateConfirmPassword" required><br/>
+            <label class="error"  v-if="errors.confirmPassword" id="surePassword_trip">*Password and Confirm Password should be the same.</label></p>
+                    <p>
+                        Birthday:
+                        <input id="birthday" type="date" v-model="birthday">
+                        <label id="birthday_trip"></label>
+                    </p>
+                    <p>
+                        Email:
+                        <input id="email" type="email" v-model="email" @blur="validateEmail" required><br/>
+                        <label v-if="errors.email" class="error" id="emil_trip">*Please enter a valid email address.</label>
+                    </p>
+        <p>
+            State:
+            <select name="type" id="userType" v-model="state">
+                <option value="Please select">Please select</option>
+                <option value="Alabama">Alabama</option>
+                <option value="Alaska">Alaska</option>
+                <option value="Arizona">Arizona</option>
+                <option value="Arkansas">Arkansas</option>
+                <option value="California">California</option>
+                <option value="Colorado">Colorado</option>
+                <option value="Connecticut">Connecticut</option>
+                <option value="Delaware">Delaware</option>
+                <option value="Florida">Florida</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Hawaii">Hawaii</option>
+                <option value="Idaho">Idaho</option>
+                <option value="Illinois">Illinois</option>
+                <option value="Indiana">Indiana</option>
+                <option value="Iowa">Iowa</option>
+                <option value="Kansas">Kansas</option>
+                <option value="Kentucky">Kentucky</option>
+                <option value="Louisiana">Louisiana</option>
+                <option value="Maine">Maine</option>
+                <option value="Maryland">Maryland</option>
+                <option value="Massachusetts">Massachusetts</option>
+                <option value="Michigan">Michigan</option>
+                <option value="Minnesota">Minnesota</option>
+                <option value="Mississippi">Mississippi</option>
+                <option value="Missouri">Missouri</option>
+                <option value="Montana">Montana</option>
+                <option value="Nebraska">Nebraska</option>
+                <option value="Nevada">Nevada</option>
+                <option value="New Hampshire">New Hampshire</option>
+                <option value="New Jersey">New Jersey</option>
+                <option value="New Mexico">New Mexico</option>
+                <option value="North Carolina">North Carolina</option>
+                <option value="North Dakota">North Dakota</option>
+                <option value="Ohio">Ohio</option>
+                <option value="Oklahoma">Oklahoma</option>
+                <option value="Oregon">Oregon</option>
+                <option value="Pennsylvania">Pennsylvania</option>
+                <option value="Rhode Island">Rhode Island</option>
+                <option value="South Carolina">South Carolina</option>
+                <option value="South Dakota">South Dakota</option>
+                <option value="Tennessee">Tennessee</option>
+                <option value="Texas">Texas</option>
+                <option value="Utah">Utah</option>
+                <option value="Vermont">Vermont</option>
+                <option value="Virginia">Virginia</option>
+                <option value="Washington">Washington</option>
+                <option value="West Virginia">West Virginia</option>
+                <option value="Wisconsin">Wisconsin</option>
+                <option value="Wyoming">Wyoming</option>
+
+            </select>
+            <label id="type_trip"></label>
+        </p>
+        <p>City:<input id="City" type="text" v-model="city" autofocus required><label id="city_trip"></label></p>
+        <p>zipCode:<input id="zipCode" type="text" v-model="zipCode" autofocus required><label id="zipCode_trip"></label></p>
+        <p style="text-align: center;">
+            <input type="submit" class="button" value="Submit"> <!--onclick='window.open("login.html")'value="提交">-->
+            <input type="reset" class="button" value="Reset">
+        </p>
+        <div  v-if="showErrorPop" class ="pop">
+            <div class="pop-content">
+                <p class="pop_title">register failed</p>
+                <button class = "pop_btn" @click="closeErrorPop">close</button>
+            </div>
+        </div>
+        <div  v-if="sucessPop" class ="pop">
+            <div class="pop-content">
+                <p class="pop_title">register success</p>
+                <button class = "pop_btn" @click="closeSucessPop">close</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el: '#register',
+        data: {
+            username: '',
+            password: '',
+            confirmPassword: '',
+            birthday: '',
+            email: '',
+            state: '0',
+            city: '',
+            zipCode: '',
+            errors: {
+                usernameVerify: false,
+                password: false,
+                confirmPassword: false,
+                email: false
+            },
+            showErrorPop: false,
+            sucessPop: false
+        },
+        methods: {
+            validateUsername: function(){
+                const url = "/user/verifyUsernameDuplication?username=" + this.username;
+                fetch(url ,{
+                    method: 'GET'
+                })
+                    .then(response => response.json())
+                    .then(data =>{
+                        if (data)
+                            this.errors.usernameVerify = true;
+                        else
+                            this.errors.usernameVerify = false;
+                    })
+            },
+            validatePassword: function(){
+                this.errors.password = this.password.length <= 6;
+            },
+            validateConfirmPassword: function(){
+                this.errors.confirmPassword = this.password != this.confirmPassword
+            },
+            validateEmail: function(){
+                this.errors.email = !this.email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+            },
+            checkForm: function() {
+                this.validateUsername();
+                this.validatePassword();
+                this.validateConfirmPassword();
+                this.validateEmail();
+                if (!this.errors.password && !this.errors.confirmPassword && !this.errors.email) {
+                    this.submitData();
+                }
+            },
+            submitData: function() {
+                const post_data = {
+                    userName: this.username,
+                    password: this.password,
+                    birthday: this.birthday,
+                    state: this.state,
+                    city: this.city,
+                    zipCode: this.zipCode,
+                    email: this.email
+                };
+                fetch('/user/register', {
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body:JSON.stringify(post_data)
+                })
+                    .then(response =>{
+                        if (response.ok){
+                            return response.json();
+                        }
+                        if (!response.ok){
+                            return response.json().then(json=>{
+                                throw new Error(json.message || 'Unknown error');
+                            })
+                        }
+                    })
+                    .then(result => {
+                        if (result.message === "success") {
+                            // Handle login success, e.g., redirect to dashboard
+                            this.sucessPop = true;
+                            //window.location.href = "/index.html";
+                        }
+                    })
+                    .catch(error=>{
+                        this.showErrorPop = true;
+                    })
+            },
+            closeErrorPop(){
+                this.showErrorPop = false;
+            },
+            closeSucessPop(){
+                this.sucessPop = false;
+                window.location.href = "/login.html";
+            }
+
+        }
+    })
+</script>
+
+</body>
+
+</html>
+

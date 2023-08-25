@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Login Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/css/login.css"/>
+    <script src="static/js/Login.js"></script>
+</head>
+<body>
+<div id="login">
+
+    <p id="image_logo"><img src="static/images/login/login_logo.jpg"  style="width: 40px; height: 40px;"></p>
+
+    <form method="post" @submit.prevent="submitForm">
+        <p><label class="label_input">Username</label><input type="text"  v-model="username" placeholder="Username" class="text_field"/></p>
+        <p><label class="label_input">Password</label><input type="password" v-model="password" placeholder="Password" class="text_field"/></p>
+
+        <div>
+            <button type="submit" id="btn_login">Login</button>
+        </div>
+        <div id="login_control">
+            <a id="forget_pwd" href="/forget_pwd.html">Forget password?</a><br/><br/>
+            <a id="register_new" href="/register.html">Register now!</a>
+        </div>
+        <!--        <br/>-->
+        <!--            <div>-->
+        <!--                <a id="register_new" href="/register.html">Register now!</a>-->
+        <!--            </div>-->
+
+        <!--        <div class="error-message" v-if="errorMessage">{{ errorMessage }}</div>-->
+        <div  v-if="showErrorPop" id ="pop">
+            <div id="pop-content">
+                <p>Login failed.Please check username and password.</p>
+                <button id = "pop_btn" @click="closeErrorPop">close</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el: '#login',
+        data: {
+            username: '',
+            password: '',
+            //errorMessage: ''
+            showErrorPop: false
+        },
+        methods: {
+            async submitForm() {
+                const data = {
+                    userName: this.username,  // Assuming the backend expects "userName" field
+                    password: this.password
+                };
+
+                // Send the AJAX request
+                fetch('/user/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            return response.json().then(json => {
+                                throw new Error(json.message || 'Unknown error');
+                            });
+                        }
+                    })
+                    .then(result => {
+                        if (result.message === "success") {
+                            window.location.href = "/index.html";
+                        }
+                    })
+                    .catch(error => {
+                        // Set the error message
+                        //this.errorMessage = error.message;
+                        this.showErrorPop = true;
+                    });
+            },
+            closeErrorPop(){
+                this.showErrorPop = false;
+            }
+        }
+    });
+</script>
+</body>
+</html>

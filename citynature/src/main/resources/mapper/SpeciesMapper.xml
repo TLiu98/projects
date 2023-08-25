@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.flyhigh.citynature.mapper.SpeciesXmlMapper">
+    <select id="findAll" resultType="Species">
+        select * from species;
+    </select>
+    <select id="findByCondition" resultType="Species">
+        select * from species where (name like #{xmlCondition} or introduction like #{xmlCondition} or representativeCity like #{xmlCondition} or habit like #{xmlCondition});
+    </select>
+
+</mapper>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Index</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--    <link rel="stylesheet" type="text/css" href="./static/css/login.css"/>-->
+<!--    <script src="static/js/Login.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="./static/css/index.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+
+    <!-- Nivo slider CSS
+    ============================================ -->
+    <link rel="stylesheet" type="text/css" href="./static/css/nivo-slider.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./static/css/preview.css" media="screen" />
+
+    <!-- Fontawsome CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/font-awesome.min.css">
+
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/owl.carousel.css">
+
+    <!-- jquery-ui CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/jquery-ui.css">
+
+    <!-- meanmenu CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/meanmenu.min.css">
+
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/animate.css">
+
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/style.css">
+
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" href="./static/css/responsive.css">
+
+    <!-- modernizr JS
+    ============================================ -->
+    <script src="./static/js/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!--    <link rel="stylesheet" type="text/css" href="./static/css/style1.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="./static/css/menu.css">-->
+
+</head>
+<body>
+    <header class="header-area">
+        <div class="header-top-area" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="header-top-right">
+                            <div  class="account-cart" id="user_login">
+<!--                                <a class="login" v-if="login_status">Welcome, {{username}}</a>-->
+                                <ul>
+                                    <li v-if="login_status" class="login"><a style="text-transform: none;">Welcome, {{username}}</a>
+<!--                                        <ul class="submenu-mainmenu">-->
+<!--                                            <li><a>login or register</a></li>-->
+<!--                                            <li class="login-button"><a href="/login.html">login</a></li>-->
+<!--                                            <li><a>or</a></li>-->
+<!--                                            <li class="creat-button"><a href="/register.html">creat account</a></li>-->
+<!--                                        </ul>-->
+                                    </li>
+                                    <li v-if="login_status === false" class="login"><a>Login</a>
+                                        <ul class="submenu-mainmenu">
+                                            <li><a>login or register</a></li>
+                                            <li class="login-button"><a href="/login.html">login</a></li>
+                                            <li><a>or</a></li>
+                                            <li class="creat-button"><a href="/register.html">creat account</a></li>
+                                        </ul>
+                                    </li>
+                                    <li v-if="login_status" class="my_account"><a href="/profile.html"></a>
+                                    <li v-if="login_status === false" class="my_account"><a href="/login.html"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-8 col-sm-6">
+                        <div class="mainmenu">
+                            <nav>
+                                <ul>
+                                    <li><a href="/index.html">Index</a></li>
+                                    <li><a href="#">Society</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="/post.html">Post</a></li>
+                                    <li><a href="#">About us</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+<!--                    <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12 search_col">-->
+<!--                        <div class="search-box">-->
+<!--                            <form action="#">-->
+<!--                                <input type="text" placeholder="Search">-->
+<!--                                <button type="submit"><i class="fa fa-search"></i></button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="carousel">
+            <img class="active" src="/static/images/login/login_background.jpg" alt="Image 1">
+            <img src="/static/images/index_picture1.jpg" alt="Image 2">
+            <img src="/static/images/index_picture2.jpg" alt="Image 3">
+        <div class="clear"></div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="container123" id="species-list">
+        <!-- 商品展示区域 -->
+        <div class="search-container">
+            <div class="search_col">
+                <div class="search-box">
+                    <form action="#">
+                        <input type="text" v-model="condition" placeholder="Search">
+                        <button type="submit" @click="findbycondition"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+
+        <div class="product-container" >
+            <!-- 示例商品 -->
+            <div class="mingxing" v-for="product in displayedProducts">
+                <div class="sub_mingxing">
+                    <img :src="'./static/images/species/' + product.picture + '.jpg'" :alt="product.name">
+                    <div class="description">{{product.name}}</div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- 分页按钮 -->
+        <div class="pagination">
+            <button class="page-btn" @click="prevPage">Previous</button>
+            <a>{{currentpage}} / {{totalpages}}</a>
+            <button class="page-btn" @click="nextPage">Next</button>
+        </div>
+    </div>
+
+</body>
+<script src="./static/js/index.js"></script>
+
+<script>
+    new Vue({
+        el: "#user_login",
+        data:{
+            login_status: false,
+            username: ''
+        },
+        created(){
+            axios.get('/user/verifyLoginStatus')
+                .then(response =>{
+                    if(response.data.username != null){
+                        this.login_status = true;
+                        this.username = response.data.username;
+                    }
+                })
+        }
+    });
+    new Vue({
+        el: "#species-list",
+        data: {
+            products: [],
+            currentpage: 1,
+            itemsPerPage: 20,
+            totalpages: 0,
+            condition: ''
+        },
+        computed:{
+            displayedProducts() {
+                const start = (this.currentpage - 1) * this.itemsPerPage;
+                const end = start + this.itemsPerPage;
+                return this.products.slice(start, end);
+            },
+        },
+        methods: {
+            prevPage() {
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                }
+            },
+            // 下一页
+            nextPage() {
+                if (this.currentPage < Math.ceil(this.products.length / this.itemsPerPage)) {
+                    this.currentPage++;
+                }
+            },
+            findbycondition() {
+                const url = "species/findByCondition?condition=" + this.condition;
+                axios.get(url)
+                    .then(response =>{
+                        this.products = response.data;
+                    })
+            }
+        },
+        created(){
+            axios.get('/species/findAll')
+                .then(response =>{
+                    this.products = response.data;
+                    if (this.products.length % this.itemsPerPage == 0)
+                        this.totalpages = this.products.length / this.itemsPerPage;
+                    else
+                        this.totalpages = (this.products.length / this.itemsPerPage | 0) + 1;
+                })
+        }
+    });
+
+</script>
+</html>
+
